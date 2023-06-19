@@ -9,22 +9,29 @@
             @csrf
 
             <div class="input-group mb-3">
-                <input id="role_id" type="number" class="form-control @error('role_id') is-invalid @enderror"
-                       placeholder="Role" name="role_id" value="{{ old('role_id') }}" required autocomplete="role_id"
-                       autofocus>
+                <select id="role_id" class="form-control @error('role_id') is-invalid @enderror" name="role_id" required autocomplete="role_id" autofocus>
+                    <option value="">Pilih Role</option>
+                    @foreach($roles as $role)
+                        <option value="{{ $role->role_id }}">{{ $role->role_name }}</option>
+                    @endforeach
+                </select>
                 <div class="input-group-append input-group-text">
                     <span class="fa fa-user"></span>
                 </div>
             </div>
 
             <div class="input-group mb-3">
-                <input id="ps_id" type="number" class="form-control @error('ps_id') is-invalid @enderror"
-                       placeholder="Program Studi" name="ps_id" value="{{ old('ps_id') }}" required autocomplete="ps_id"
-                       autofocus>
+                <select id="ps_id" class="form-control @error('ps_id') is-invalid @enderror" name="ps_id" required autocomplete="ps_id" autofocus>
+                    <option value="">Pilih Program Studi</option>
+                    @foreach($programStudis as $programStudi)
+                        <option value="{{ $programStudi->ps_id }}">{{ $programStudi->ps_name }}</option>
+                    @endforeach
+                </select>
                 <div class="input-group-append input-group-text">
                     <span class="fa fa-user"></span>
                 </div>
             </div>
+
 
             <div class="input-group mb-3">
                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
@@ -91,10 +98,6 @@
                 <strong>{{ $message }}</strong>
             </span>
             @enderror
-
-
-
-
 
             <div class="row">
                 <div class="col-4 offset-8">

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\ProgramStudi;
+use App\Role;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -76,5 +78,14 @@ class RegisterController extends Controller
             'nomor_telepon' => $data['nomor_telepon'],
             'name' => $data['name'],
         ]);
+    }
+
+
+    public function showRegistrationForm()
+    {
+        $roles = Role::all();
+        $programStudis = ProgramStudi::all();
+
+        return view('auth.register', compact('roles', 'programStudis'));
     }
 }
