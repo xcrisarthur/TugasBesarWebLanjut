@@ -55,9 +55,21 @@
                 </table>
             </div>
         </div>
-        <h3 class="m-0 text-dark">Dokumen Beban Kontrak Studi</h3>
 
         @if((Auth::user()->user_id == $dkbs->user_id) )
+            <h3 class="m-0 text-dark">Dokumen Beban Kontrak Studi</h3>
+            @php
+                $totalSKS = 0;
+                foreach($dkbss as $dkbs) {
+                    if($dkbs->user_id == Auth::user()->user_id) {
+                        $totalSKS += $dkbs->mataKuliah->sks;
+                    }
+                }
+            @endphp
+
+            <h5 class="mt-3">Total SKS Yang Diambil : {{ $totalSKS }} </h5>
+            <h5 class=""> Program Studi : Teknik Informatika </h5>
+
                 <div class="mt-3 p-0">
                     <table class="table table-hover mb-0">
                         <thead>
@@ -67,13 +79,10 @@
                             <th>Kelas</th>
                             <th>Ruangan</th>
                             <th>Jumlah SKS</th>
-{{--                            <th>Kapasitas Kelas</th>--}}
-
                             <th>Hari</th>
                             <th>Jam Mulai</th>
                             <th>Jam Selesai</th>
                             <th>Semester</th>
-
                         </tr>
                         </thead>
                         @foreach($dkbss as $dkbs)
@@ -84,15 +93,11 @@
                                 <td>{{ $dkbs->kelas }}</td>
                                 <td>{{ $dkbs->ruangan->nama }}</td>
                                 <td>{{ $dkbs->mataKuliah->sks }}</td>
-
-
                                 <td>{{ $dkbs->hari }}</td>
                                 <td>{{ $dkbs->jam_mulai }}</td>
                                 <td>{{ $dkbs->jam_selesai }}</td>
-                                                                <td>{{ $dkbs->semester->semester_name }}</td>
-
+                                <td>{{ $dkbs->semester->semester_name }}</td>
                                 </tbody>
-
                             @endif
                         @endforeach
                     </table>
@@ -100,7 +105,6 @@
         @else
             <h3 class="m-0 text-dark pb-2">Pilih Mata Kuliah</h3>
             @foreach($semesters as $semester)
-
                 <div class="accordion accordion-flush" id="accordionFlushExamplee">
                     <div class="accordion-item border border-dark-subtle">
                         <h2 class="accordion-header">
@@ -110,7 +114,6 @@
                         </h2>
                         <div id="{{ $semester->semester_id }}" class="accordion-collapse collapse" data-bs-parent="#{{ $semester->semester_id }}">
                             <p class="accordion-body h4">Mata Kuliah</p>
-
                             <div class="">
                                 <div class="m-3 p-0">
                                     <table class="table table-hover mb-0">
@@ -122,17 +125,14 @@
                                             <th>Ruangan</th>
                                             <th>Jumlah SKS</th>
                                             <th>Kapasitas Kelas</th>
-
                                             <th>Hari</th>
                                             <th>Jam Mulai</th>
                                             <th>Jam Selesai</th>
                                             <th>Action</th>
-
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <form method="POST" action="{{ route('matakuliah.add') }}">
-
                                         @foreach($detailmks as $detailmk)
                                             @if($detailmk->semester_id == $semester->semester_id)
                                                     <tr>
@@ -174,7 +174,6 @@
                                     </table>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -190,6 +189,7 @@
                         <tr>
                             <th>Kode Mata Kuliah</th>
                             <th>Nama Mata Kuliah</th>
+                            <th>Kelas</th>
                             <th>Tipe Kelas</th>
                             <th>Ruangan</th>
                             <th>Jumlah SKS</th>
@@ -197,18 +197,15 @@
                             <th>Hari</th>
                             <th>Jam Mulai</th>
                             <th>Jam Selesai</th>
-                            {{--                        <th>Action</th>--}}
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-
-                            {{--disini buttonnya--}}
                         </tr>
                         </tbody>
                     </table>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary my-3">Submit</button>
             </form>
         @endif
 
@@ -237,20 +234,21 @@
                 $('input[type="checkbox"][data-mk-id="' + selectedMkId + '"]').not(this).prop('disabled', this.checked);
 
                 $('input[type="checkbox"]:checked').each(function() {
-                    var sks = parseInt($(this).data('sks'));
+                    var Tsks = parseInt($(this).data('sks'));
                     selectedCourses.push({
                         kode: $(this).val(),
                         nama: $(this).data('nama'),
                         tipe: $(this).data('tipe'),
+                        kelas: $(this).data('kelas'),
                         namaruangan: $(this).data('namaruangan'),
                         sks: $(this).data('sks'),
                         maxparti: $(this).data('maxparti'),
                         hari: $(this).data('hari'),
                         jmulai: $(this).data('jmulai'),
                         jselesai: $(this).data('jselesai'),
-                        sks: sks
+                        tsks: Tsks
                     });
-                    totalSKS += sks;
+                    totalSKS += Tsks;
                 });
 
                 var coursesTableBody = $('#selected-courses tbody');
@@ -261,6 +259,7 @@
                         var row = $('<tr></tr>');
                         row.append($('<td></td>').text(selectedCourses[i].kode));
                         row.append($('<td></td>').text(selectedCourses[i].nama));
+                        row.append($('<td></td>').text(selectedCourses[i].kelas));
                         row.append($('<td></td>').text(selectedCourses[i].tipe));
                         row.append($('<td></td>').text(selectedCourses[i].namaruangan));
                         row.append($('<td></td>').text(selectedCourses[i].sks));

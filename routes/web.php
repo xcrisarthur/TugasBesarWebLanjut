@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\SemesterController;
@@ -27,6 +28,7 @@ Auth::routes(['verify' => false, 'reset' => false]);
 
 Route::middleware('auth')->group(function() {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
     Route::get('/perwalian', [IndexController::class, 'index'])->name('perwalianList');
     Route::post('/perwalian/store', [IndexController::class, 'store'])->name('dkbs.store');
 
@@ -37,7 +39,15 @@ Route::middleware('auth')->group(function() {
 
     Route::post('/matakuliah/add', 'MataKuliahController@add')->name('matakuliah.add');
 
+//    Route::get('/register', [IndexController::class, 'index'])->name('registerList');
 });
+
+//Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+//Route::post('/register', [RegisterController::class, 'register']);
+
+//Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+//Route::post('/register', 'Auth\RegisterController@register');
+
 
 
 
