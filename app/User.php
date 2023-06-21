@@ -39,4 +39,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function Role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    public function ProgramStudi()
+    {
+        return $this->belongsTo(ProgramStudi::class, 'ps_id');
+    }
+
+
 }

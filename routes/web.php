@@ -33,13 +33,16 @@ Route::middleware('auth')->group(function() {
     Route::post('/perwalian/store', [IndexController::class, 'store'])->name('dkbs.store');
 
     Route::get('/profile', [UserController::class, 'index'])->name('profileList');
+    Route::put('/profile', [UserController::class, 'update'])->name('profile.update');
+    Route::post('/profile/update-photo', 'UserController@updatePhoto')->name('profile.updatePhoto');
+
+//    Route::get('/profile', [UserController::class, 'profile'])->name('profileList');
 
     Route::get('/matakuliah', [MataKuliahController::class, 'index'])->name('matakuliah.index');
     Route::post('/matakuliah/add', [MataKuliahController::class, 'add'])->name('matakuliah.add');
 
     Route::post('/matakuliah/add', 'MataKuliahController@add')->name('matakuliah.add');
 
-//    Route::get('/register', [IndexController::class, 'index'])->name('registerList');
 });
 
 //Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
