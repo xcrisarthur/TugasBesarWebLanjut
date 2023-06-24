@@ -19,7 +19,7 @@ class UserController extends Controller
         $user = Auth::user();
 
         return view('profile.index', [
-            'pickUsers' => $user,
+            'users' => $user,
         ]);
     }
 

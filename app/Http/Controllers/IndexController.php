@@ -38,7 +38,6 @@ class IndexController extends Controller
             'mks' => $dataMataKuliahs,
             'semesters' => $dataSemester,
             'users' => $dataUser,
-
             'dkbss' => $dataDkbs,
             'detailmks' => $dataDetailMk,
             'ruangans' => $dataRuangan,

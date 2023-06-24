@@ -1,7 +1,8 @@
 @extends('layouts.master')
 
 @section('content')
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -31,7 +32,7 @@
                             <label for="photo" class="h1 my-1">Foto Profil</label>
 
                             <div class="text-center my-3">
-                                <img src="{{ asset('storage/img/' . $pickUsers->foto) }}" alt="Foto Profil" class="img-thumbnail" style="max-width: 500px; max-height: 350px; min-width: 0px; min-height: 0px;">
+                                <img src="{{ asset('storage/img/' . $users->foto) }}" alt="Foto Profil" class="img-thumbnail" style="max-width: 500px; max-height: 350px; min-width: 0px; min-height: 0px;">
                             </div>
 
                             <form action="{{ route('profile.updatePhoto') }}" method="POST" enctype="multipart/form-data">
@@ -88,25 +89,25 @@
                                 <div class="mb-3 row">
                                     <label for="roleid" class="col-sm-2 col-form-label">Role</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="roleid" readonly class="form-control-plaintext" id="roleid" value="{{ $pickUsers->role->role_name }}">
+                                        <input type="text" name="roleid" readonly class="form-control-plaintext" id="roleid" value="{{ $users->role->role_name }}">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="psid" class="col-sm-2 col-form-label">Program Studi</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="psid" readonly class="form-control-plaintext" id="psid" value="{{ $pickUsers->programStudi->ps_name }}">
+                                        <input type="text" name="psid" readonly class="form-control-plaintext" id="psid" value="{{ $users->programStudi->ps_name }}">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="name" class="col-sm-2 col-form-label">Nama</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="name" class="form-control" id="name" value="{{ $pickUsers->name }}">
+                                        <input type="text" name="name" class="form-control" id="name" value="{{ $users->name }}">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="email" class="col-sm-2 col-form-label">Email</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="email" class="form-control" id="email" value="{{ $pickUsers->email }}">
+                                        <input type="text" name="email" class="form-control" id="email" value="{{ $users->email }}">
                                     </div>
                                 </div>
 {{--                                <div class="mb-3 row">--}}
@@ -118,13 +119,13 @@
                                 <div class="mb-3 row">
                                     <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="alamat" id="alamat" value="{{ $pickUsers->alamat }}">
+                                        <input type="text" class="form-control" name="alamat" id="alamat" value="{{ $users->alamat }}">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="nomortelepon" class="col-sm-2 col-form-label">Nomor Telepon</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="nomortelepon" name="nomortelepon" value="{{ $pickUsers->nomor_telepon }}">
+                                        <input type="text" class="form-control" id="nomortelepon" name="nomortelepon" value="{{ $users->nomor_telepon }}">
                                     </div>
                                 </div>
 
@@ -166,5 +167,9 @@
         </script>
 {{--    @endsection--}}
 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 @endsection
 
