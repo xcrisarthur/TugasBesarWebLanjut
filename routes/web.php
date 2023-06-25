@@ -35,20 +35,15 @@ Route::middleware('auth')->group(function() {
     Route::post('/perwalian/store', [IndexController::class, 'store'])->name('dkbs.store');
 
     Route::get('/profile', [UserController::class, 'index'])->name('profileList');
-<<<<<<< Updated upstream
-=======
     Route::put('/profile', [UserController::class, 'update'])->name('profile.update');
     Route::post('/profile/update-photo', 'UserController@updatePhoto')->name('profile.updatePhoto');
->>>>>>> Stashed changes
 
     Route::get('/matakuliah', [MataKuliahController::class, 'index'])->name('matakuliah.index');
     Route::post('/matakuliah/add', [MataKuliahController::class, 'add'])->name('matakuliah.add');
 
     Route::post('/matakuliah/add', 'MataKuliahController@add')->name('matakuliah.add');
 
-<<<<<<< Updated upstream
 //    Route::get('/register', [IndexController::class, 'index'])->name('registerList');
-=======
     Route::get('/api/dkbs/semester/{semesterId}', 'DkbsController@getDkbsBySemester');
 
     Route::get('/dkbs', [DkbsController::class, 'index'])->name('dkbsList');
@@ -65,7 +60,6 @@ Route::middleware('auth')->group(function() {
 
 //    Route::get('/dkbs', 'IndexController@index')->name('dkbs');
 
->>>>>>> Stashed changes
 });
 
 //Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
