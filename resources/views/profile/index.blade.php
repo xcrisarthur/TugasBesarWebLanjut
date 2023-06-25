@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+<<<<<<< Updated upstream
 <!-- Content Header (Page header) -->
 <div class="content-header">
 	<div class="container-fluid">
@@ -18,6 +19,27 @@
 	</div><!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
+=======
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Profile</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Update Profile</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+>>>>>>> Stashed changes
 
 <!-- Main content -->
 <div class="content">

@@ -21,7 +21,13 @@
 <!-- Main content -->
 <div class="content">
 	<div class="container-fluid">
+<<<<<<< Updated upstream
 		
+=======
+
+        <h1>Hallo {{ \Illuminate\Support\Facades\Auth::user()->name }}</h1>
+
+>>>>>>> Stashed changes
 	</div><!-- /.container-fluid -->
 </div>
 <!-- /.content -->

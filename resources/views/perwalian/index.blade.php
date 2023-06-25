@@ -14,7 +14,7 @@
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-					<li class="breadcrumb-item active">Mata Kuliah</li>
+					<li class="breadcrumb-item active">Perwalian</li>
 				</ol>
 			</div><!-- /.col -->
 		</div><!-- /.row -->
@@ -47,7 +47,7 @@
                         @endforeach
 
                         @if (!$perwalianStatus)
-                            <p>Status Perwalian: Belum Melakukan Perwalian</p>
+                            <p>Status Perwalian: Belum Melakukan Perwalian - {{ $perwalianStatus }} </p>
                         @endif
 
                         </td>
@@ -56,53 +56,8 @@
             </div>
         </div>
 
-        @if((Auth::user()->user_id == $dkbs->user_id) )
-            <h3 class="m-0 text-dark">Dokumen Beban Kontrak Studi</h3>
-            @php
-                $totalSKS = 0;
-                foreach($dkbss as $dkbs) {
-                    if($dkbs->user_id == Auth::user()->user_id) {
-                        $totalSKS += $dkbs->mataKuliah->sks;
-                    }
-                }
-            @endphp
-
-            <h5 class="mt-3">Total SKS Yang Diambil : {{ $totalSKS }} </h5>
-            <h5 class=""> Program Studi : Teknik Informatika </h5>
-
-                <div class="mt-3 p-0">
-                    <table class="table table-hover mb-0">
-                        <thead>
-                        <tr>
-                            <th>Kode Mata Kuliah</th>
-                            <th>Nama Mata Kuliah</th>
-                            <th>Kelas</th>
-                            <th>Ruangan</th>
-                            <th>Jumlah SKS</th>
-                            <th>Hari</th>
-                            <th>Jam Mulai</th>
-                            <th>Jam Selesai</th>
-                            <th>Semester</th>
-                        </tr>
-                        </thead>
-                        @foreach($dkbss as $dkbs)
-                            @if($dkbs->user_id == Auth::user()->user_id)
-                                <tbody>
-                                <td>{{ $dkbs->mk_id }}</td>
-                                <td>{{ $dkbs->mataKuliah->mk_name }}</td>
-                                <td>{{ $dkbs->kelas }}</td>
-                                <td>{{ $dkbs->ruangan->nama }}</td>
-                                <td>{{ $dkbs->mataKuliah->sks }}</td>
-                                <td>{{ $dkbs->hari }}</td>
-                                <td>{{ $dkbs->jam_mulai }}</td>
-                                <td>{{ $dkbs->jam_selesai }}</td>
-                                <td>{{ $dkbs->semester->semester_name }}</td>
-                                </tbody>
-                            @endif
-                        @endforeach
-                    </table>
-                </div>
-        @else
+{{--        --}}
+        @if(!$perwalianStatus)
             <h3 class="m-0 text-dark pb-2">Pilih Mata Kuliah</h3>
             @foreach($semesters as $semester)
                 <div class="accordion accordion-flush" id="accordionFlushExamplee">
@@ -133,8 +88,8 @@
                                         </thead>
                                         <tbody>
                                         <form method="POST" action="{{ route('matakuliah.add') }}">
-                                        @foreach($detailmks as $detailmk)
-                                            @if($detailmk->semester_id == $semester->semester_id)
+                                            @foreach($detailmks as $detailmk)
+                                                @if($detailmk->semester_id == $semester->semester_id)
                                                     <tr>
                                                         <td> {{ $detailmk->mk_id }} </td>
                                                         <td> {{ $detailmk->mataKuliah->mk_name }} ( Kelas {{ $detailmk->kelas }} ) </td>
@@ -146,7 +101,7 @@
                                                         <td> {{ $detailmk->jam_mulai }} </td>
                                                         <td> {{ $detailmk->jam_selesai }} </td>
                                                         <td>
-                                                                @csrf
+                                                            @csrf
                                                             <label class="containerCheck">
                                                                 <input
                                                                     type="checkbox"
@@ -167,8 +122,8 @@
                                                             </label>
                                                         </td>
                                                     </tr>
-                                            @endif
-                                        @endforeach
+                                                @endif
+                                            @endforeach
                                         </form>
                                         </tbody>
                                     </table>
@@ -178,6 +133,7 @@
                     </div>
                 </div>
             @endforeach
+
             <h3 class="m-0 text-dark pb-2 pt-3">Mata Kuliah Terpilih</h3>
             <h5>Total SKS : <span id="total-sks"></span></h5>
             <p id="sks-warning" style="color: red; display: none;">Total SKS melebihi batas maksimum (24 SKS).</p>
@@ -208,6 +164,166 @@
                 <button type="submit" class="btn btn-primary my-3">Submit</button>
             </form>
         @endif
+
+{{--        --}}
+
+
+{{--        @foreach ($dkbs as $dkb)--}}
+{{--            @if((Auth::user()->user_id == $dkbs->user_id) )--}}
+{{--                <h3 class="m-0 text-dark">Dokumen Beban Kontrak Studi</h3>--}}
+{{--                @php--}}
+{{--                    $totalSKS = 0;--}}
+{{--                    foreach($dkbss as $dkbs) {--}}
+{{--                        if($dkbs->user_id == Auth::user()->user_id) {--}}
+{{--                            $totalSKS += $dkbs->mataKuliah->sks;--}}
+{{--                        }--}}
+{{--                    }--}}
+{{--                @endphp--}}
+
+{{--                <h5 class="mt-3">Total SKS Yang Diambil : {{ $totalSKS }} </h5>--}}
+{{--                <h5 class=""> Program Studi : Teknik Informatika </h5>--}}
+
+{{--                <div class="mt-3 p-0">--}}
+{{--                    <table class="table table-hover mb-0">--}}
+{{--                        <thead>--}}
+{{--                        <tr>--}}
+{{--                            <th>Kode Mata Kuliah</th>--}}
+{{--                            <th>Nama Mata Kuliah</th>--}}
+{{--                            <th>Kelas</th>--}}
+{{--                            <th>Ruangan</th>--}}
+{{--                            <th>Jumlah SKS</th>--}}
+{{--                            <th>Hari</th>--}}
+{{--                            <th>Jam Mulai</th>--}}
+{{--                            <th>Jam Selesai</th>--}}
+{{--                            <th>Semester</th>--}}
+{{--                        </tr>--}}
+{{--                        </thead>--}}
+{{--                        @foreach($dkbss as $dkbs)--}}
+{{--                            @if($dkbs->user_id == Auth::user()->user_id)--}}
+{{--                                <tbody>--}}
+{{--                                <td>{{ $dkbs->mk_id }}</td>--}}
+{{--                                <td>{{ $dkbs->mataKuliah->mk_name }}</td>--}}
+{{--                                <td>{{ $dkbs->kelas }}</td>--}}
+{{--                                <td>{{ $dkbs->ruangan->nama }}</td>--}}
+{{--                                <td>{{ $dkbs->mataKuliah->sks }}</td>--}}
+{{--                                <td>{{ $dkbs->hari }}</td>--}}
+{{--                                <td>{{ $dkbs->jam_mulai }}</td>--}}
+{{--                                <td>{{ $dkbs->jam_selesai }}</td>--}}
+{{--                                <td>{{ $dkbs->semester->semester_name }}</td>--}}
+{{--                                </tbody>--}}
+{{--                            @endif--}}
+{{--                        @endforeach--}}
+{{--                    </table>--}}
+{{--                </div>--}}
+{{--            @else--}}
+{{--                <h3 class="m-0 text-dark pb-2">Pilih Mata Kuliah</h3>--}}
+{{--                @foreach($semesters as $semester)--}}
+{{--                    <div class="accordion accordion-flush" id="accordionFlushExamplee">--}}
+{{--                        <div class="accordion-item border border-dark-subtle">--}}
+{{--                            <h2 class="accordion-header">--}}
+{{--                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ $semester->semester_id }}" aria-expanded="false" aria-controls="flush-collapseOne">--}}
+{{--                                    {{ $semester->semester_name }}--}}
+{{--                                </button>--}}
+{{--                            </h2>--}}
+{{--                            <div id="{{ $semester->semester_id }}" class="accordion-collapse collapse" data-bs-parent="#{{ $semester->semester_id }}">--}}
+{{--                                <p class="accordion-body h4">Mata Kuliah</p>--}}
+{{--                                <div class="">--}}
+{{--                                    <div class="m-3 p-0">--}}
+{{--                                        <table class="table table-hover mb-0">--}}
+{{--                                            <thead>--}}
+{{--                                            <tr>--}}
+{{--                                                <th>Kode Mata Kuliah</th>--}}
+{{--                                                <th>Nama Mata Kuliah</th>--}}
+{{--                                                <th>Tipe Kelas</th>--}}
+{{--                                                <th>Ruangan</th>--}}
+{{--                                                <th>Jumlah SKS</th>--}}
+{{--                                                <th>Kapasitas Kelas</th>--}}
+{{--                                                <th>Hari</th>--}}
+{{--                                                <th>Jam Mulai</th>--}}
+{{--                                                <th>Jam Selesai</th>--}}
+{{--                                                <th>Action</th>--}}
+{{--                                            </tr>--}}
+{{--                                            </thead>--}}
+{{--                                            <tbody>--}}
+{{--                                            <form method="POST" action="{{ route('matakuliah.add') }}">--}}
+{{--                                                @foreach($detailmks as $detailmk)--}}
+{{--                                                    @if($detailmk->semester_id == $semester->semester_id)--}}
+{{--                                                        <tr>--}}
+{{--                                                            <td> {{ $detailmk->mk_id }} </td>--}}
+{{--                                                            <td> {{ $detailmk->mataKuliah->mk_name }} ( Kelas {{ $detailmk->kelas }} ) </td>--}}
+{{--                                                            <td> {{ $detailmk->tipe  }} </td>--}}
+{{--                                                            <td> {{ $detailmk->ruangan->nama }} </td>--}}
+{{--                                                            <td> {{ $detailmk->mataKuliah->sks }} SKS </td>--}}
+{{--                                                            <td> {{ $detailmk->max_participants }} </td>--}}
+{{--                                                            <td> {{ $detailmk->hari  }} </td>--}}
+{{--                                                            <td> {{ $detailmk->jam_mulai }} </td>--}}
+{{--                                                            <td> {{ $detailmk->jam_selesai }} </td>--}}
+{{--                                                            <td>--}}
+{{--                                                                @csrf--}}
+{{--                                                                <label class="containerCheck">--}}
+{{--                                                                    <input--}}
+{{--                                                                        type="checkbox"--}}
+{{--                                                                        name="selected_courses[]"--}}
+{{--                                                                        value="{{ $detailmk->mataKuliah->mk_id }}"--}}
+{{--                                                                        data-mk-id="{{ $detailmk->mataKuliah->mk_id }}"--}}
+{{--                                                                        data-nama="{{ $detailmk->mataKuliah->mk_name }}"--}}
+{{--                                                                        data-kelas="{{ $detailmk->kelas }}"--}}
+{{--                                                                        data-tipe="{{ $detailmk->tipe  }}"--}}
+{{--                                                                        data-namaruangan="{{ $detailmk->ruangan->nama }}"--}}
+{{--                                                                        data-sks="{{ $detailmk->mataKuliah->sks }}"--}}
+{{--                                                                        data-maxparti="{{ $detailmk->max_participants }}"--}}
+{{--                                                                        data-hari="{{ $detailmk->hari  }}"--}}
+{{--                                                                        data-jmulai="{{ $detailmk->jam_mulai }}"--}}
+{{--                                                                        data-jselesai="{{ $detailmk->jam_selesai }}"--}}
+{{--                                                                    >--}}
+{{--                                                                    <div class="checkmark"></div>--}}
+{{--                                                                </label>--}}
+{{--                                                            </td>--}}
+{{--                                                        </tr>--}}
+{{--                                                    @endif--}}
+{{--                                                @endforeach--}}
+{{--                                            </form>--}}
+{{--                                            </tbody>--}}
+{{--                                        </table>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                @endforeach--}}
+
+{{--                <h3 class="m-0 text-dark pb-2 pt-3">Mata Kuliah Terpilih</h3>--}}
+{{--                <h5>Total SKS : <span id="total-sks"></span></h5>--}}
+{{--                <p id="sks-warning" style="color: red; display: none;">Total SKS melebihi batas maksimum (24 SKS).</p>--}}
+{{--                <form method="POST" action="{{ route('dkbs.store') }}" id="selected-courses-form">--}}
+{{--                    @csrf--}}
+{{--                    <div class=" p-0">--}}
+{{--                        <table class="table table-hover mb-0" id="selected-courses">--}}
+{{--                            <thead>--}}
+{{--                            <tr>--}}
+{{--                                <th>Kode Mata Kuliah</th>--}}
+{{--                                <th>Nama Mata Kuliah</th>--}}
+{{--                                <th>Kelas</th>--}}
+{{--                                <th>Tipe Kelas</th>--}}
+{{--                                <th>Ruangan</th>--}}
+{{--                                <th>Jumlah SKS</th>--}}
+{{--                                <th>Kapasitas Kelas</th>--}}
+{{--                                <th>Hari</th>--}}
+{{--                                <th>Jam Mulai</th>--}}
+{{--                                <th>Jam Selesai</th>--}}
+{{--                            </tr>--}}
+{{--                            </thead>--}}
+{{--                            <tbody>--}}
+{{--                            <tr>--}}
+{{--                            </tr>--}}
+{{--                            </tbody>--}}
+{{--                        </table>--}}
+{{--                    </div>--}}
+{{--                    <button type="submit" class="btn btn-primary my-3">Submit</button>--}}
+{{--                </form>--}}
+{{--            @endif--}}
+{{--        @endforeach--}}
+
 
 
 	</div><!-- /.container-fluid -->

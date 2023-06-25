@@ -10,10 +10,21 @@
     <!-- Sidebar -->
     <div class="sidebar">
         @auth
+<<<<<<< Updated upstream
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 <img src="{{asset('img/user-photo-default.png')}}" class="img-circle elevation-2" alt="User Image">
+=======
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="{{ asset('storage/img/' . Auth::user()->foto) }}" class="img-circle elevation-2">
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block">{{Auth::user()->name}}</a>
+                </div>
+>>>>>>> Stashed changes
             </div>
             <div class="info">
                 <a href="#" class="d-block">{{Auth::user()->name}}</a>
@@ -31,12 +42,43 @@
                     </a>
                 </li>
 
+<<<<<<< Updated upstream
                 <li class="nav-item">
                     <a href="{{route('perwalianList')}}" class="nav-link">
 {{--                        <i class="fa-solid fa-calendar-days"></i>--}}
                         <i class="nav-icon fa fa-calendar"></i>
                         <p>Perwalian Management</p>
                     </a>
+=======
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon bi bi-people-fill"></i>
+                        <p>
+                            Mahasiswa
+                            <i class="right bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item menu-open">
+                            <a href="{{route('perwalianList')}}" class="nav-link">
+                                <i class="nav-icon bi bi-calendar3"></i>
+                                <p>Perwalian</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('jadwalList')}}" class="nav-link">
+                                <i class="nav-icon bi bi-calendar-check-fill"></i>
+                                <p>Jadwal</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('dkbsList')}}" class="nav-link">
+                                <i class="nav-icon bi bi-clipboard"></i>
+                                <p>DKBS</p>
+                            </a>
+                        </li>
+                    </ul>
+>>>>>>> Stashed changes
                 </li>
 
                 <li class="nav-item">
