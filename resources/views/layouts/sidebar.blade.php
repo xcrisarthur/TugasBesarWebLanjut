@@ -48,12 +48,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{route('jadwalList')}}" class="nav-link">
                             <a href="{{route('perwalianList')}}" class="nav-link">
                                 <i class="nav-icon bi bi-calendar-check-fill"></i>
                                 <p>Jadwal</p>
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{route('dkbsList')}}" class="nav-link">
                             <a href="{{route('perwalianList')}}" class="nav-link">
                                 <i class="nav-icon bi bi-clipboard"></i>
                                 <p>DKBS</p>

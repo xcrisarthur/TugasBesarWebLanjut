@@ -2,22 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\DetailMK;
 use App\Dkbs;
+use App\MataKuliah;
+use App\Ruangan;
+use App\Semester;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DkbsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function index()
     {
+        $dataMataKuliahs = MataKuliah::all();
+        $dataSemester = Semester::all();
+        $dataUser = User::all();
         $dataDkbs = Dkbs::all();
-        return view('perwalian.index', [
-            'dkbss' => $dataDkbs
-        ]);
+        $dataDetailMk = DetailMK::all();
+        $dataRuangan = Ruangan::all();
+        $selectedCourses = [];
+
+        return view('dkbs.index', [
+            'mks' => $dataMataKuliahs,
+            'semesters' => $dataSemester,
+            'users' => $dataUser,
+            'dkbss' => $dataDkbs,
+            'detailmks' => $dataDetailMk,
+            'ruangans' => $dataRuangan,
+        ])->with('selectedCourses', $selectedCourses);
     }
 
     /**

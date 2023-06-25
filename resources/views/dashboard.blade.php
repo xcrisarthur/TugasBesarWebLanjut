@@ -24,7 +24,8 @@
 <div class="content">
 	<div class="container-fluid">
 
-        
+
+        <h1>Hallo {{ \Illuminate\Support\Facades\Auth::user()->name }}</h1>
 
 	</div><!-- /.container-fluid -->
 </div>

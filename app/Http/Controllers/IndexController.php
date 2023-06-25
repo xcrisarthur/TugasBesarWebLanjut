@@ -31,7 +31,6 @@ class IndexController extends Controller
         $dataRuangan = Ruangan::all();
         $dataDetailMks = DetailMK::with('MataKuliah', 'Ruangan')->get();
         $selectedCourses = [];
-
 //        dd($mkIds);
 
         return view('perwalian.index', [
@@ -39,6 +38,7 @@ class IndexController extends Controller
             'semesters' => $dataSemester,
             'users' => $dataUser,
             'dkbss' => $dataDkbs,
+            'dkbs' => $dataDkbs,
             'detailmks' => $dataDetailMk,
             'ruangans' => $dataRuangan,
 //            'mkids' => $mkIds,
@@ -74,14 +74,4 @@ class IndexController extends Controller
         return redirect()->back()->with('success', 'Data mata kuliah telah disimpan.');
     }
 
-
-    public function show($id)
-    {
-//        $user = User::find($id);
-//
-//        // pastikan relasi dkbs dimuat terlebih dahulu
-//        $user->load('dkbs');
-//
-//        return view('perwalian.index', ['user' => $user]);
-    }
 }
