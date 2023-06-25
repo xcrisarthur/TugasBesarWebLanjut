@@ -38,6 +38,9 @@ Route::middleware('auth')->group(function() {
     Route::put('/profile', [UserController::class, 'update'])->name('profile.update');
     Route::post('/profile/update-photo', 'UserController@updatePhoto')->name('profile.updatePhoto');
 
+//    Route::get('/profile', [UserController::class, 'profile'])->name('profileList');
+
+
     Route::get('/matakuliah', [MataKuliahController::class, 'index'])->name('matakuliah.index');
     Route::post('/matakuliah/add', [MataKuliahController::class, 'add'])->name('matakuliah.add');
 
