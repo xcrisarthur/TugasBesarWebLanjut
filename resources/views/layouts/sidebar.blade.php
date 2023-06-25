@@ -1,32 +1,26 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css" rel="stylesheet">
+
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('dashboard')}}" class="brand-link">
         <img src="{{asset('img/app-logo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-            style="opacity: .8">
+             style="opacity: .8">
         <span class="brand-text font-weight-light">{{config('app.name')}}</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
         @auth
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="{{asset('img/user-photo-default.png')}}" class="img-circle elevation-2" alt="User Image">
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="{{ asset('storage/img/' . Auth::user()->foto) }}" class="img-circle elevation-2">
+                    <img src="{{ asset('storage/img/' . Auth::user()->foto) }}" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
                     <a href="#" class="d-block">{{Auth::user()->name}}</a>
                 </div>
             </div>
-            <div class="info">
-                <a href="#" class="d-block">{{Auth::user()->name}}</a>
-            </div>
-        </div>
         @endauth
 
         <!-- Sidebar Menu -->
@@ -34,17 +28,10 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
                     <a href="{{route('dashboard')}}" class="nav-link">
-                        <i class="nav-icon fa fa-dashboard"></i>
+                        <i class="nav-icon bi bi-speedometer2"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
-
-                <li class="nav-item">
-                    <a href="{{route('perwalianList')}}" class="nav-link">
-{{--                        <i class="fa-solid fa-calendar-days"></i>--}}
-                        <i class="nav-icon fa fa-calendar"></i>
-                        <p>Perwalian Management</p>
-                    </a>
                 <li class="nav-item menu-open">
                     <a href="#" class="nav-link">
                         <i class="nav-icon bi bi-people-fill"></i>
@@ -54,7 +41,7 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item menu-open">
+                        <li class="nav-item">
                             <a href="{{route('perwalianList')}}" class="nav-link">
                                 <i class="nav-icon bi bi-calendar3"></i>
                                 <p>Perwalian</p>
@@ -77,7 +64,7 @@
 
                 <li class="nav-item">
                     <a href="{{route('profileList')}}" class="nav-link">
-                        <i class="nav-icon fa fa-user"></i>
+                        <i class="nav-icon bi bi-person-fill"></i>
                         <p>Update Profile</p>
                     </a>
                 </li>
@@ -87,42 +74,10 @@
                         @csrf
                     </form>
                     <a href="javascript:void(0)" class="nav-link" onclick="$('#logout-form').submit();">
-                        <i class="nav-icon fa fa-sign-out"></i>
+                        <i class="nav-icon bi bi-box-arrow-right"></i>
                         <p>Logout</p>
                     </a>
                 </li>
-                {{-- <li class="nav-item has-treeview menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fa fa-dashboard"></i>
-                        <p>
-                            Dashboard
-                            <i class="right fa fa-angle-right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link active">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Active Page</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Inactive Page</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li> --}}
-                {{-- <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-th"></i>
-                        <p>
-                            Simple Link
-                            <span class="right badge badge-danger">New</span>
-                        </p>
-                    </a>
-                </li> --}}
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
