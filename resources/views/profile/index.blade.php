@@ -57,10 +57,10 @@
                                         <div class="col-md-6">
                                             <img src="" alt="Preview Foto" id="preview-image" class="img-thumbnail" style="max-width: 250px; max-height: 200px; min-width: 0px; min-height: 0px; display: none;">
 
-{{--                Start Priview image on here                            --}}
+{{--                Start Preview image on here                            --}}
 <div class="container my-5" id="preview-text">
     <div>
-        <p class="h3">Priview Image Here</p>
+        <p class="h3">Preview Image Here</p>
     </div>
     <div class="newtons-cradle m-auto">
         <div class="newtons-cradle__dot"></div>
@@ -69,7 +69,7 @@
         <div class="newtons-cradle__dot"></div>
     </div>
 </div>
-{{--               End Priview image on here                             --}}
+{{--               End Preview image on here                             --}}
                                         </div>
                                     </div>
                                 </div>
