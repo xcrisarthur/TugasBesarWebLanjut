@@ -1,13 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    Hai
+@extends('admin.layout.main')
 
-    <a href="{{route('admin.logout')}}">Logout</a>
-</body>
-</html>
+@section('title', 'Administrator Perwalian - Dashboard')
+
+@push('css')
+@endpush
+
+@push('headscript')
+@endpush
+
+@section('content')
+    Hai
+@endsection
+
+@push('bottomscript')
+@endpush

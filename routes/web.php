@@ -83,6 +83,32 @@ route::prefix('admin')->name('admin.')->group(function () {
         route::get('/', [\App\Http\Controllers\admin\homeController::class, 'index'])->name('home');
         route::get('logout', [\App\Http\Controllers\admin\loginController::class, 'logout'])->name('logout');
 
-        // Define other route here ...
+        //Management
+        route::get('report', [\App\Http\Controllers\admin\managementController::class, 'report'])->name('report');
+        route::get('dkbs', [\App\Http\Controllers\admin\managementController::class, 'dkbs'])->name('dkbs');
+        route::prefix('dkbs')->name('dkbs.')->group(function () {
+            route::get('/show/{id}', [\App\Http\Controllers\admin\managementController::class, 'showDkbs'])->name('show');
+        });
+
+        //Panel Kendali
+
+        //Mahasiswa
+        route::get('mahasiswa', [\App\Http\Controllers\admin\mahasiswaController::class, 'index'])->name('mahasiswa');
+        route::prefix('mahasiswa')->name('mahasiswa.')->group(function () {
+            route::get('/create', [\App\Http\Controllers\admin\mahasiswaController::class, 'create'])->name('create');
+        });
+
+        //Mata Kuliah
+        route::get('matakuliah', [\App\Http\Controllers\admin\matakuliahController::class, 'index'])->name('matakuliah');
+        route::prefix('matakuliah')->name('matakuliah.')->group(function () {
+            route::get('/create', [\App\Http\Controllers\admin\matakuliahController::class, 'create'])->name('create');
+            route::get('/show/{id}', [\App\Http\Controllers\admin\matakuliahController::class, 'show'])->name('show');
+        });
+
+        //Perwalian
+        route::get('perwalian', [\App\Http\Controllers\admin\perwalianController::class, 'index'])->name('perwalian');
+        route::prefix('perwalian')->name('perwalian.')->group(function () {
+            route::get('/create', [\App\Http\Controllers\admin\mahasiswaController::class, 'create'])->name('create');
+        });
     });
 });

@@ -14,4 +14,9 @@ class ProgramStudi extends Model
         'ps_id',
         'ps_name'
     ];
+
+    public function MataKuliah()
+    {
+        return $this->hasMany(MataKuliah::class, 'mk_id');
+    }
 }

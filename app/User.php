@@ -50,5 +50,10 @@ class User extends Authenticatable
         return $this->belongsTo(ProgramStudi::class, 'ps_id');
     }
 
+    public function dkbs()
+    {
+        return $this->hasMany(Dkbs::class, 'user_id');
+    }
+
 
 }

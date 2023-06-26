@@ -32,4 +32,9 @@ class Dkbs extends Model
         return $this->belongsTo(Semester::class, 'semester_id', 'semester_id');
     }
 
+    public function User()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 }
