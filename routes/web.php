@@ -70,3 +70,19 @@ Route::middleware('auth')->group(function() {
 
 //Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 //Route::post('/register', 'Auth\RegisterController@register');
+
+Route::get('/admin', function() {
+    return redirect()->route('admin.login');
+});
+
+route::prefix('admin')->name('admin.')->group(function () {
+    route::get('login', [\App\Http\Controllers\admin\loginController::class, 'index'])->name('login');
+    route::post('login', [\App\Http\Controllers\admin\loginController::class, 'login'])->name('login.check');
+
+    route::middleware('auth:admin')->group(function () {
+        route::get('/', [\App\Http\Controllers\admin\homeController::class, 'index'])->name('home');
+        route::get('logout', [\App\Http\Controllers\admin\loginController::class, 'logout'])->name('logout');
+
+        // Define other route here ...
+    });
+});
