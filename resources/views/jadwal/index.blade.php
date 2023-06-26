@@ -42,6 +42,17 @@
                 @endphp
 
                 @foreach($days as $day)
+                    @php
+                        $displayedCourses = []; // Array to store displayed courses
+                    @endphp
+                    @foreach($dkbss as $dkbs)
+                        @if($dkbs->hari == $day)
+                            @php
+                                $displayedCourses[] = $dkbs->mataKuliah->mk_id; // Add course to the displayed courses array
+                            @endphp
+                        @endif
+                    @endforeach
+                    @if(!empty($displayedCourses)) <!-- Check if there are courses in the current day -->
                     <div class="col-md-12 text-center">
                         <h3 class="text-center">{{ $day }}</h3>
                         <table class="table table-hover">
@@ -56,7 +67,7 @@
                             </thead>
                             <tbody>
                             @foreach($dkbss as $dkbs)
-                                @if($dkbs->hari == $day && !in_array($dkbs->mataKuliah->mk_id, $displayedCourses))
+                                @if($dkbs->hari == $day)
                                     <tr>
                                         <td>{{ $dkbs->mk_id }}</td>
                                         <td>{{ $dkbs->mataKuliah->mk_name }}</td>
@@ -64,14 +75,12 @@
                                         <td>{{ $dkbs->ruangan->nama }}</td>
                                         <td>{{ $dkbs->jam_mulai }} - {{ $dkbs->jam_selesai }}</td>
                                     </tr>
-                                    @php
-                                        $displayedCourses[] = $dkbs->mataKuliah->mk_id; // Add course to the displayed courses array
-                                    @endphp
                                 @endif
                             @endforeach
                             </tbody>
                         </table>
                     </div>
+                    @endif
                 @endforeach
             </div>
 

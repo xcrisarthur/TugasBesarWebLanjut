@@ -21,68 +21,66 @@
 </div>
 <!-- /.content-header -->
 
-<!-- Main content -->
-<div class="content">
-	<div class="container-fluid">
-        <div class="input-group mb-3 col-md-2">
-            <select id="semesterSelect" class="form-control " name="" required autocomplete="" autofocus>
-                <option value="">Pilih Semester</option>
-                @foreach($semesters as $semester)
-                    <option value="{{ $semester->semester_id }}">{{ $semester->semester_name }}</option>
-                @endforeach
-            </select>
-        </div>
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="input-group mb-3 col-md-2">
+                <select id="semesterSelect" class="form-control " name="" required autocomplete="" autofocus>
+                    <option value="">Pilih Semester</option>
+                    @foreach($semesters as $semester)
+                        <option value="{{ $semester->semester_id }}">{{ $semester->semester_name }}</option>
+                    @endforeach
+                </select>
+            </div>
 
-        @php
-            $totalSKS = 0;
-            foreach($dkbss as $dkbs) {
-                if($dkbs->user_id == Auth::user()->user_id) {
-                    $totalSKS += $dkbs->mataKuliah->sks;
+            @php
+                $totalSKS = 0;
+                foreach($dkbss as $dkbs) {
+                    if($dkbs->user_id == Auth::user()->user_id) {
+                        $totalSKS += $dkbs->mataKuliah->sks;
+                    }
                 }
-            }
-        @endphp
+            @endphp
 
-        <h5 class="mt-3">Total SKS Yang Diambil : {{ $totalSKS }} </h5>
-        <h5 class=""> Program Studi : Teknik Informatika </h5>
+            @if($totalSKS > 0)
+                <h5 class="mt-3">Total SKS Yang Diambil : {{ $totalSKS }} </h5>
+                <h5 class=""> Program Studi : Teknik Informatika </h5>
 
-        <div class="mt-3 p-0">
+                <div class="mt-3 p-0">
 
-            <table class="table table-hover mb-0 text-center">
-                <thead>
-                <tr>
-                    <th>Kode Mata Kuliah</th>
-                    <th>Nama Mata Kuliah</th>
-                    <th>Kelas</th>
-                    <th>Ruangan</th>
-                    <th>Jumlah SKS</th>
-                    <th>Hari</th>
-                    <th>Waktu</th>
-{{--                    <th>Jam Selesai</th>--}}
-{{--                    <th>Semester</th>--}}
-                </tr>
-                </thead>
-                @foreach($dkbss as $dkbs)
-                    @if($dkbs->user_id == Auth::user()->user_id)
-                        <tbody>
-                        <td>{{ $dkbs->mk_id }}</td>
-                        <td>{{ $dkbs->mataKuliah->mk_name }}</td>
-                        <td>{{ $dkbs->kelas }}</td>
-                        <td>{{ $dkbs->ruangan->nama }}</td>
-                        <td>{{ $dkbs->mataKuliah->sks }}</td>
-                        <td>{{ $dkbs->hari }}</td>
-                        <td>{{ $dkbs->jam_mulai }} - {{ $dkbs->jam_selesai }}</td>
-{{--                        <td></td>--}}
-{{--                        <td>{{ $dkbs->semester->semester_name }}</td>--}}
-                        </tbody>
-                    @endif
-                @endforeach
-            </table>
-        </div>
-
-
-	</div><!-- /.container-fluid -->
-</div>
-<!-- /.content -->
+                    <table class="table table-hover mb-0 text-center">
+                        <thead>
+                        <tr>
+                            <th>Kode Mata Kuliah</th>
+                            <th>Nama Mata Kuliah</th>
+                            <th>Kelas</th>
+                            <th>Ruangan</th>
+                            <th>Jumlah SKS</th>
+                            <th>Hari</th>
+                            <th>Waktu</th>
+                        </tr>
+                        </thead>
+                        @foreach($dkbss as $dkbs)
+                            @if($dkbs->user_id == Auth::user()->user_id)
+                                <tbody>
+                                <td>{{ $dkbs->mk_id }}</td>
+                                <td>{{ $dkbs->mataKuliah->mk_name }}</td>
+                                <td>{{ $dkbs->kelas }}</td>
+                                <td>{{ $dkbs->ruangan->nama }}</td>
+                                <td>{{ $dkbs->mataKuliah->sks }}</td>
+                                <td>{{ $dkbs->hari }}</td>
+                                <td>{{ $dkbs->jam_mulai }} - {{ $dkbs->jam_selesai }}</td>
+                                </tbody>
+                            @endif
+                        @endforeach
+                    </table>
+                </div>
+            @else
+                <h5 class="mt-3">Di semester ini anda belum melakukan perwalian</h5>
+            @endif
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
     <script src="{{ asset('js/script.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

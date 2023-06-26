@@ -23,36 +23,20 @@ class UserController extends Controller
         ]);
     }
 
-//    public function profile()
-//    {
-////        $user = Auth::user(); // Mengambil pengguna yang sedang masuk
-////        return view('profile.index', ['user' => $user]);
-//
-//        $user = Auth::user()->user_id; // Ganti 1 dengan id user yang diinginkan
-//        return view('profile.index', ['user' => $user]);
-//    }
 
     public function updatePhoto(Request $request): \Illuminate\Http\RedirectResponse
     {
-        // Validasi request jika diperlukan
-
         $user = Auth::user();
 
-        // Hapus foto profil sebelumnya jika ada
         if ($user->foto) {
             Storage::delete($user->foto);
         }
 
-        // Simpan foto profil baru
         $email = $user->email;
         $extension = $request->file('photo')->getClientOriginalExtension();
         $filename = $email . '.' . $extension;
         $request->file('photo')->storeAs('public/img', $filename);
 
-//        $path = $request->file('photo')->store('public/img');
-//        $filename = str_replace('public/', '', $path);
-
-        // Update kolom 'foto' pada tabel 'l_user'
         $user->foto = $filename;
         $user->save();
 
