@@ -23,4 +23,8 @@ class MataKuliah extends Model
         return $this->hasMany(DetailMK::class, 'mk_id', 'mk_id');
     }
 
+    public function ProgramStudi()
+    {
+        return $this->belongsTo(ProgramStudi::class, 'ps_id');
+    }
 }
