@@ -6,12 +6,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Dashboard</title>
 
 	<!-- Font Awesome Icons -->
-	<link rel="stylesheet" href="{{asset('css/fontawesome.min.css')}}">
+	<link rel="stylesheet" href="{{URL::asset('css/fontawesome.min.css')}}">
 	<!-- Theme style -->
-	<link rel="stylesheet" href="{{asset('css/adminlte.min.css')}}">
+	<link rel="stylesheet" href="{{URL::asset('css/adminlte.min.css')}}">
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
