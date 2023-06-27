@@ -36,7 +36,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-graduation-cap"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">Perwalian</div>
             </a>
@@ -79,21 +79,21 @@
                 Panel Kendali
             </div>
 
-            <li class="nav-item {{ Route::is('admin.mahasiswa') ? 'active' : '' }}">
+            {{--<li class="nav-item {{ Route::is('admin.mahasiswa') ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('admin.mahasiswa')}}">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Mahasiswa</span></a>
-            </li>
+            </li>--}}
             <li class="nav-item {{ Route::is('admin.matakuliah') ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('admin.matakuliah')}}">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-fw fa-users"></i>
                     <span>Mata Kuliah Perwalian</span></a>
             </li>
-            <li class="nav-item {{ Route::is('admin.perwalian') ? 'active' : '' }}">
+            {{-- <li class="nav-item {{ Route::is('admin.perwalian') ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('admin.perwalian')}}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Perwalian</span></a>
-            </li>
+            </li> --}}
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -141,12 +141,12 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            {{-- <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
                                     src="{{ asset('img/admin/img/undraw_profile.svg') }}">
-                            </a>
+                            </a> --}}
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
@@ -211,7 +211,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
+                        <span aria-hidden="true"></span>
                     </button>
                 </div>
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>

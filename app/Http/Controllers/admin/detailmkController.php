@@ -9,16 +9,11 @@ use App\ProgramStudi;
 use App\DetailMK;
 use Illuminate\Support\Facades\DB;
 
-class matakuliahController extends Controller
+class detailmkController extends Controller
 {
-    public function index() {
-        $data = MataKuliah::all();
-        return view('admin.matakuliah.index', compact('data'));
-    }
-
     public function create() {
         $programstudi = ProgramStudi::all();
-        return view('admin.matakuliah.create', compact('programstudi'));
+        return view('admin.matakuliah.detailmk.create', compact('programstudi'));
     }
 
     public function store(Request $request) {
@@ -47,13 +42,13 @@ class matakuliahController extends Controller
         }   
     }
 
-    public function edit($id) {
+    public function edit($id, $idmk) {
         $data = MataKuliah::where('mk_id', $id)->first();
         $programstudi = ProgramStudi::all();
         return view('admin.matakuliah.edit', compact('data', 'programstudi'));
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id, $idmk) {
         $request->validate([
             'mk_name' => 'required',
             'ps_id' => 'required',
@@ -77,15 +72,9 @@ class matakuliahController extends Controller
         }   
     }
 
-    public function show($id) {
-        $data = MataKuliah::where('mk_id', $id)->first();
-        $datamk = DetailMK::where('mk_id', $id)->get();
-        return view('admin.matakuliah.detail.index', compact('data', 'datamk'));
-    }
-
-    public function destroy($id) {
-        MataKuliah::where('mk_id', $id)->delete();
+    public function destroy($id, $idmk) {
+        DetailMK::where('mk_id', $id)->delete();
         //pesan sudah dihapus
-        return redirect()->route('admin.matakuliah');
+        return redirect()->route('admin.matakuliah.detailmk', ['id' => $id]);
     }
 }

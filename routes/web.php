@@ -102,7 +102,19 @@ route::prefix('admin')->name('admin.')->group(function () {
         route::get('matakuliah', [\App\Http\Controllers\admin\matakuliahController::class, 'index'])->name('matakuliah');
         route::prefix('matakuliah')->name('matakuliah.')->group(function () {
             route::get('/create', [\App\Http\Controllers\admin\matakuliahController::class, 'create'])->name('create');
-            route::get('/show/{id}', [\App\Http\Controllers\admin\matakuliahController::class, 'show'])->name('show');
+            route::post('/create', [\App\Http\Controllers\admin\matakuliahController::class, 'store'])->name('store');
+            route::get('/edit/{id}', [\App\Http\Controllers\admin\matakuliahController::class, 'edit'])->name('edit');
+            route::put('/edit/{id}', [\App\Http\Controllers\admin\matakuliahController::class, 'update'])->name('update');
+            route::delete('/{id}', [\App\Http\Controllers\admin\matakuliahController::class, 'destroy'])->name('destroy');
+
+            route::get('/show/{id}', [\App\Http\Controllers\admin\matakuliahController::class, 'show'])->name('detailmk');
+            route::prefix('/show/{id}')->name('detailmk.')->group(function () {
+                route::get('/create', [\App\Http\Controllers\admin\detailmkController::class, 'create'])->name('create');
+                route::post('/create', [\App\Http\Controllers\admin\detailmkController::class, 'store'])->name('store');
+                route::get('/edit/{idmk}', [\App\Http\Controllers\admin\detailmkController::class, 'edit'])->name('edit');
+                route::put('/edit/{idmk}', [\App\Http\Controllers\admin\detailmkController::class, 'update'])->name('update');
+                route::delete('/{idmk}', [\App\Http\Controllers\admin\detailmkController::class, 'destroy'])->name('destroy');
+            });
         });
 
         //Perwalian
