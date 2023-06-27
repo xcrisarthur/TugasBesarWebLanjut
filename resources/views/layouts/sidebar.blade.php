@@ -1,9 +1,9 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css" rel="stylesheet">
 
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar elevation-4 bg-gradient-warning">
+<aside class="main-sidebar elevation-4 bg-gray-dark">
     <!-- Brand Logo -->
-    <a href="{{route('dashboard')}}" class="brand-link" style="color: black; text-decoration: none;">
+    <a href="{{route('dashboard')}}" class="brand-link" style="color: white; text-decoration: none;">
         <h1 style="font-size: 28px;">UKM</h1>
         <span class="brand-text font-weight-light" style="font-size: 16px;">Universitas Kristen Maranatha</span>
     </a>
@@ -27,13 +27,13 @@
                 <li class="nav-item">
                     <a href="{{route('dashboard')}}" class="nav-link">
                         <i class="nav-icon bi bi-speedometer2"></i>
-                        <p class="text-black">Dashboard</p>
+                        <p class="text">Dashboard</p>
                     </a>
                 </li>
                 <li class="nav-item menu-open">
                     <a href="#" class="nav-link">
                         <i class="nav-icon bi bi-people-fill"></i>
-                        <p class="text-black">
+                        <p class="text">
                             Mahasiswa
                             <i class="right bi bi-chevron-right"></i>
                         </p>
@@ -42,21 +42,21 @@
                         <li class="nav-item">
                             <a href="{{route('perwalianList')}}" class="nav-link">
                                 <i class="nav-icon bi bi-calendar3"></i>
-                                <p class="text-black">Perwalian</p>
+                                <p class="text">Perwalian</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('jadwalList')}}" class="nav-link">
                                 {{--                            <a href="{{route('perwalianList')}}" class="nav-link">--}}
                                 <i class="nav-icon bi bi-calendar-check-fill"></i>
-                                <p class="text-black">Jadwal</p>
+                                <p class="text">Jadwal</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('dkbsList')}}" class="nav-link">
                                 {{--                            <a href="{{route('perwalianList')}}" class="nav-link">--}}
                                 <i class="nav-icon bi bi-clipboard"></i>
-                                <p class="text-black">DKBS</p>
+                                <p class="text">DKBS</p>
                             </a>
                         </li>
                     </ul>
@@ -65,7 +65,7 @@
                 <li class="nav-item">
                     <a href="{{route('profileList')}}" class="nav-link">
                         <i class="nav-icon bi bi-person-fill"></i>
-                        <p class="text-black">Update Profile</p>
+                        <p class="text">Update Profile</p>
                     </a>
                 </li>
 
@@ -75,7 +75,7 @@
                     </form>
                     <a href="javascript:void(0)" class="nav-link" onclick="$('#logout-form').submit();">
                         <i class="nav-icon bi bi-box-arrow-right"></i>
-                        <p class="text-black">Logout</p>
+                        <p class="text">Logout</p>
                     </a>
                 </li>
             </ul>
