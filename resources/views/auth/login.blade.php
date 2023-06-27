@@ -3,11 +3,11 @@
 @section('content')
 <!-- /.login-logo -->
 <link rel="stylesheet" href="css/style.css">
-<div class="">
-    <div class="">
+<div class="card-container">
+    <div class="card-body">
 {{--        <p class="login-box-msg">{{ __('Login') }}</p>--}}
 
-        <form class="form" action="{{route('login')}}" method="post">
+        <form class="form" action="{{route('login')}}" method="post" >
             <p class="form-title">Login</p>
 
             @csrf

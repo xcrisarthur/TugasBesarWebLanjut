@@ -8,12 +8,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Login</title>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{asset('css/fontawesome.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('css/adminlte.min.css')}}">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
@@ -21,14 +22,15 @@
 </head>
 
 <body class="hold-transition login-page">
-    <div class="login-box">
-        <div class="login-logo">
-            {{config('app.name')}}
-        </div>
-        
-        @yield('content')
+<div class="login-box">
+    <div class="login-logo">
+        <h1>UKM</h1>
+        <h2>Universitas Kristen Maranatha</h2>
     </div>
-    <!-- /.login-box -->
+
+    @yield('content')
+</div>
+<!-- /.login-box -->
 </body>
 
 </html>
