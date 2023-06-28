@@ -1,6 +1,6 @@
 @extends('admin.layout.main')
 
-@section('title', 'Administrator Perwalian - Mata Kuliah')
+@section('title', 'Administrator Perwalian - Mata Kuliah - Show')
 
 @push('css')
     <!-- Custom styles for this page -->
@@ -13,38 +13,78 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800 font-weight-bold">Mata Kuliah</h1>
-        <a href="{{route('admin.matakuliah.create')}}" class="bg-primary text-light rounded p-2 mb-0 text-decoration-none">Tambah</a>
+        <h1 class="h3 mb-0 text-gray-800 font-weight-bold">Detail Mata Kuliah</h1>
+        <a href="{{route('admin.matakuliah')}}" class="bg-danger text-light rounded p-2 mb-0 text-decoration-none">Kembali</a>
     </div>
 
-    <div class="card shadow mb-4">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    Form Detail Mata Kuliah
+                </div>
+                <div class="card-body">
+                    <form action="{{route('admin.matakuliah.edit', ['id' => $data->mk_id])}}" method="post">
+                        @csrf
+                        @method('put')
+                        <div class="form-group mb-3">
+                            <label>Kode Mata Kuliah</label>
+                            <input type="text" class="form-control" name="mk_id" placeholder="Kode Mata Kuliah" value="{{$data->mk_id}}" readonly="">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Nama Mata Kuliah</label>
+                            <input type="text" class="form-control" name="mk_name" placeholder="Nama Mata Kuliah" value="{{$data->mk_name}}" readonly="">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Program Studi</label>
+                            <input type="text" class="form-control" name="ps_id" placeholder="Program Studi" value="{{$data->ProgramStudi->ps_name}}" readonly="">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label>SKS</label>
+                            <input type="number" class="form-control" name="sks" placeholder="SKS" value="{{$data->sks}}" readonly="">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-sm-flex align-items-center mt-4">
+        <a href="{{route('admin.matakuliah.detailmk.create', ['id' => $data->mk_id])}}" class="bg-danger text-light rounded p-2 mb-0 text-decoration-none">Tambah</a>
+    </div>
+
+    <!-- Detail Mata Kuliah -->
+    <div class="card shadow mt-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Datatable Mata Kuliah</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Datatable Detail Mata Kuliah</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>No</th>
-                            <th>Kode Mata Kuliah</th>
-                            <th>Nama Mata Kuliah</th>
-                            <th>Program Studi</th>
-                            <th>SKS</th>
+                            <th>Semester</th>
+                            <th>Kelas</th>
+                            <th>Ruangan</th>
+                            <th>Hari</th>
+                            <th>Tipe</th>
+                            <th>Jam Mulai</th>
+                            <th>Jam Selesai</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($data as $index => $item)
+                        @forelse($datamk as $index => $item)
                             <tr>
-                                <td>{{$index+1}}</td>
-                                <td>{{$item->mk_id}}</td>
-                                <td>{{$item->mk_name}}</td>
-                                <td>{{$item->ProgramStudi->ps_name}}</td>
-                                <td>{{$item->sks}}</td>
+                                <td>{{$item->semester_id}}</td>
+                                <td>{{$item->kelas}}</td>
+                                <td>{{$item->id_ruangan}}</td>
+                                <td>{{$item->hari}}</td>
+                                <td>{{$item->tipe}}</td>
+                                <td>{{$item->jam_mulai}}</td>
+                                <td>{{$item->jam_selesai}}</td>
                                 <td>
-                                    <a href="{{ route('admin.matakuliah.detailmk', ['id' => $item->mk_id]) }}" class="text-decoration-none p-2 mb-0"><span class="badge badge-primary">View</span></a>
-                                    <a href="{{ route('admin.matakuliah.edit', ['id' => $item->mk_id]) }}" class="text-decoration-none p-2 mb-0"><span class="badge badge-secondary">Edit</span></a>
+                                    <a href="{{ route('admin.matakuliah.detailmk.edit', ['id' => $item->mk_id, 'idmk' => $item->mk_id]) }}" class="text-decoration-none p-2 mb-0"><span class="badge badge-secondary">Edit</span></a>
                                     <a href="#" class="text-decoration-none p-2 mb-0" data-toggle="modal" data-target="#modalDelete{{$item->mk_id}}"><span class="badge badge-danger">Delete</span></a>
                                 </td>
 
@@ -64,7 +104,7 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-                                                <form action="{{ route('admin.matakuliah.destroy', ['id' => $item->mk_id]) }}" method="post">
+                                                <form action="{{ route('admin.matakuliah.detailmk.destroy', ['id' => $item->mk_id, 'idmk' => $item->mk_id]) }}" method="post">
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit" class="btn btn-danger">Delete</button>
@@ -76,7 +116,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="text-center">
+                                <td colspan="8" class="text-center">
                                     <p class="text-secondary font-weight-bold mb-0">Data Not Found!</p>
                                 </td>
                             </tr>
